@@ -11,3 +11,4 @@ requests == 2.29.0
 whitenoise == 6.4.0
 gunicorn == 20.1.0
 wheel == 0.40.0
+django-admin-soft-dashboard==1.0.12
