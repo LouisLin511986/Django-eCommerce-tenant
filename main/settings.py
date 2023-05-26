@@ -114,6 +114,17 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+DATABASES = {
+    'default': {
+        'ENGINE': 'django_tenants.postgresql_backend',
+        'NAME': 'django_multi_tenant',
+        'USER': 'django_multi_tenant_user',
+        'PASSWORD': '3xlH0ScoY8oMYL6pzzdAPDM28l3c02Po',
+        'HOST': 'dpg-cho5ccg2qv295prpcpig-a.singapore-postgres.render.com',
+        'PORT': '5432',
+        'TIME_ZONE': 'Asia/Taipei',                           #空白預設為DB port
+    }
+}
 
 # DATABASES = {
 #     'default': {
@@ -126,9 +137,9 @@ WSGI_APPLICATION = 'main.wsgi.application'
 #         'TIME_ZONE': 'Asia/Taipei',                           #空白預設為DB port
 #     }
 # }
-DATABASES = {
-    'default':  dj_database_url.parse(os.environ.get("DATABASE_URL"))
-}
+# DATABASES = {
+#     'default':  dj_database_url.parse(os.environ.get("DATABASE_URL"))
+# }
 DATABASE_ROUTERS = (
     'django_tenants.routers.TenantSyncRouter',
 )
