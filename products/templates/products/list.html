@@ -31,7 +31,7 @@
                             <div class="preview-meta">
                                 <ul>
                                     <li>
-                                        <span  data-toggle="modal" data-target="#product-modal-{{ item.id }}">
+                                        <span  data-toggle="modal" data-target="#product-modal-{{ item.product_Number }}">
                                             <i class="tf-ion-ios-search-strong"></i>
                                         </span>
                                     </li>
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <!-- Modal -->
-                <div class="modal product-modal fade" id="product-modal-{{ item.id }}">
+                <div class="modal product-modal fade" id="product-modal-{{ item.product_Number }}">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i class="tf-ion-close"></i>
                     </button>
@@ -74,7 +74,7 @@
                                                 {{ item.description }}
                                             </p>
                                             <a href="cart.html" class="btn btn-main">加入購物車</a>
-                                            <a href="{% url 'products:detail' item.id %}" class="btn btn-transparent">檢視商品詳細資料</a>
+                                            <a href="{% url 'products:detail' item.product_Number %}" class="btn btn-transparent">檢視商品詳細資料</a>
                                         </div>
                                     </div>
                                 </div>

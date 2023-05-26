@@ -8,13 +8,13 @@ class HomeView(TemplateView):
 
     def get(self, request, *args, **kwargs): 
         products = Product.objects.all()
-        left_product_categories = ProductCategory.objects.all()[0:2]
-        right_product_categories = ProductCategory.objects.all()[2:3]
-        right_product_category = right_product_categories.first() if right_product_categories else None
+        # left_product_categories = ProductCategory.objects.all()[0:2]
+        # right_product_categories = ProductCategory.objects.all()[2:3]
+        # right_product_category = right_product_categories.first() if right_product_categories else None
         context = self.get_context_data(**kwargs)
         context['items'] = products
-        context['left_product_categories'] = left_product_categories
-        context['right_product_category'] = right_product_category
+        # context['left_product_categories'] = left_product_categories
+        # context['right_product_category'] = right_product_category
         return self.render_to_response(context)
 
 """

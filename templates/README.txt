@@ -1,0 +1,1 @@
+dir=>include, layouts, pages are dashboard templates.
