@@ -34,7 +34,7 @@ EMAIL_BACKEND  =  'django.core.mail.backends.console.EmailBackend'
 
 INTERNAL_IPS = [
     "127.0.0.1",
-    "https://zeus-e-commerce.onrender.com/",
+    "zeus-e-commerce.onrender.com",
 ]
 
 # Application definition
