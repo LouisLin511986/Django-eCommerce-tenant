@@ -5,7 +5,7 @@ class EPaperEmail(models.Model):
     '''
     電子報訂閱信箱
     '''
-    email = models.EmailField('E-mail', max_length=255)
+    email = models.EmailField(verbose_name='信箱', max_length=255)
     
     class Meta:
         verbose_name = '電子報訂閱信箱'

@@ -36,23 +36,23 @@ class ProductCategory(models.Model):
     modified = models.DateTimeField(verbose_name="最後更新日期", auto_now = True)
     image = models.ImageField(verbose_name="圖片", null = True, blank = True, upload_to = upload_handle)
 
-    @property
-    def name_locale(self):
-        language = get_language()
-        if language == 'zh-hant':
-            return f"{self.name}"
-        elif language == 'en':
-            return f"{self.name_en}"
-        return f"{self.name}"
+    # @property
+    # def name_locale(self):
+    #     language = get_language()
+    #     if language == 'zh-hant':
+    #         return f"{self.name}"
+    #     elif language == 'en':
+    #         return f"{self.name_en}"
+    #     return f"{self.name}"
     
-    @property
-    def description_locale(self):
-        language = get_language()
-        if language == 'zh-hant':
-            return f"{self.description}"
-        elif language == 'en':
-            return f"{self.description_en}"
-        return f"{self.description}"
+    # @property
+    # def description_locale(self):
+    #     language = get_language()
+    #     if language == 'zh-hant':
+    #         return f"{self.description}"
+    #     elif language == 'en':
+    #         return f"{self.description_en}"
+    #     return f"{self.description}"
 
     class Meta:
         verbose_name = '商品分類'

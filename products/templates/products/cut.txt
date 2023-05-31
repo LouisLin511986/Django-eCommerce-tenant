@@ -1,4 +1,13 @@
+home.html
 85.
 <!-- <a href="javascript:void(0)" onclick="getAjax('{% url 'orders:add_cart' item.id %}', '已加入購物車', 'false');"><i class="tf-ion-android-cart"></i></a> -->
 119.
 <!-- <a href="javascript:void(0)" onclick="getAjax('{% url 'orders:add_cart' item.id %}', '已加入購物車', 'false')" class="btn btn-main">加入購物車</a> -->
+
+base.html
+113.
+{% for language in get_setting_list %}
+    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+        {{ language.name_local }} ({{ language.code }})
+    </option>
+{% endfor %}

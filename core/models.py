@@ -5,8 +5,8 @@ from core import helpers
 
 # Create your models here.
 class Setting(models.Model):
-    id = models.CharField('語言代碼', max_length=10, primary_key=True)
-    language = models.CharField('系統語言', max_length=50)
+    # id = models.CharField('語言代碼', max_length=10, primary_key=True)
+    # language = models.CharField('系統語言', max_length=50)
     sitename = models.CharField(
         '系統名稱', default='', null=True, max_length=100, blank=True
     )
@@ -51,33 +51,33 @@ class Setting(models.Model):
         verbose_name_plural = '網站設定'
 
     def __str__(self):
-        return "%s" % (self.language)
+        return "%s" % (self.sitename)
     
-class LocaleSetting(models.Model):
-    id = models.CharField('語言代碼', max_length=10, primary_key=True)
-    language = models.CharField('系統語言', max_length=50)
+# class LocaleSetting(models.Model):
+#     id = models.CharField('語言代碼', max_length=10, primary_key=True)
+#     language = models.CharField('系統語言', max_length=50)
 
-    class Meta:
-        verbose_name = '翻譯對照表'
-        verbose_name_plural = '翻譯對照表'
+#     class Meta:
+#         verbose_name = '翻譯對照表'
+#         verbose_name_plural = '翻譯對照表'
 
-    def __str__(self):
-        return "%s" % (self.id)
+#     def __str__(self):
+#         return "%s" % (self.id)
 
-class TranslateSetting(models.Model):
-    locale = models.ForeignKey('core.LocaleSetting', on_delete=models.CASCADE, related_name='translatesetting_set')
-    raw_string = models.CharField('原始文字', max_length=255)
-    translated_string = models.CharField('翻譯後文字', default='', null=True, max_length=255, blank=True)
+# class TranslateSetting(models.Model):
+#     locale = models.ForeignKey('core.LocaleSetting', on_delete=models.CASCADE, related_name='translatesetting_set')
+#     raw_string = models.CharField('原始文字', max_length=255)
+#     translated_string = models.CharField('翻譯後文字', default='', null=True, max_length=255, blank=True)
 
-    def clean(self):
-        if trans_obj := TranslateSetting.objects.filter(raw_string=self.raw_string, locale=self.locale):
-            if self.id != trans_obj.first().id:
-                raise ValidationError(_('Raw string already exists!'))
+#     def clean(self):
+#         if trans_obj := TranslateSetting.objects.filter(raw_string=self.raw_string, locale=self.locale):
+#             if self.id != trans_obj.first().id:
+#                 raise ValidationError(_('Raw string already exists!'))
 
-    class Meta:
-        verbose_name = '翻譯文字'
-        verbose_name_plural = '翻譯文字'
-        ordering = ['raw_string']
+#     class Meta:
+#         verbose_name = '翻譯文字'
+#         verbose_name_plural = '翻譯文字'
+#         ordering = ['raw_string']
 
-    def __str__(self):
-        return ""
+#     def __str__(self):
+#         return ""

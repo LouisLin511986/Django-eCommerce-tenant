@@ -1,9 +1,7 @@
 {% load static %}
 {% load i18n %}
 {% load core_tag %}
-{% get_current_language as LANGUAGE_CODE %}
 {% get_setting as get_setting %}
-{% get_setting_list as get_setting_list %}
 
 <!DOCTYPE html>
 
@@ -57,7 +55,7 @@
                             <i class="tf-ion-ios-telephone"></i>
                             <span>0129- 12323-123123</span>
                             <!-- 訂閱電子報 -->
-                            <span><a href="{% url 'epaper:epaper' %}">{% translate 'Subscribe to the newsletter' %}</a></span>
+                            <span><a href="{% url 'epaper:epaper' %}">訂閱請按我</a></span>
                         </div>
                     </div>
                     <div class="col-md-4 col-xs-12 col-sm-4">
@@ -84,11 +82,11 @@
                         <ul class="top-menu text-right list-inline">
                             <li class="dropdown cart-nav dropdown-slide">
                                 <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
-                                        class="tf-ion-android-cart"></i>Cart</a>
+                                        class="tf-ion-android-cart"></i>購物車</a>
                                 <div class="dropdown-menu cart-dropdown">
                                     <ul class="text-center cart-buttons">
-                                        <li><a href="{% url 'orders:cart' %}" class="btn btn-small">View Cart</a></li>
-                                        <li><a href="checkout.html" class="btn btn-small btn-solid-border">Checkout</a></li>
+                                        <li><a href="{% url 'orders:cart' %}" class="btn btn-small">查看購物車</a></li>
+                                        <li><a href="checkout.html" class="btn btn-small btn-solid-border">結帳</a></li>
                                     </ul>
                                 </div>
                               </li>
@@ -96,10 +94,10 @@
                             <!-- Search -->
                             <li class="dropdown search dropdown-slide">
                                 <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
-                                        class="tf-ion-ios-search-strong"></i> Search</a>
+                                        class="tf-ion-ios-search-strong"></i> 搜尋</a>
                                 <ul class="dropdown-menu search-dropdown">
                                     <li>
-                                        <form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
+                                        <form action="post"><input type="search" class="form-control" placeholder="搜尋..."></form>
                                     </li>
                                 </ul>
                             </li><!-- / Search -->
@@ -110,11 +108,7 @@
                                     {% csrf_token %}
                                     <input name="next" type="hidden" value="{{ redirect_to }}">
                                     <select name="language" class="form-control" onchange="this.form.submit()">
-                                        {% for language in get_setting_list %}
-                                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                                                {{ language.name_local }} ({{ language.code }})
-                                            </option>
-                                        {% endfor %}
+                                        
                                     </select>
                                 </form>
                             </li><!-- / Languages -->

@@ -1,6 +1,11 @@
 from django.contrib import admin
-
-# Register your models here.
 from epaper.models import EPaperEmail
 
-admin.site.register(EPaperEmail)         # 註冊 EPaperEmail 模型
+
+class EPaperEmailAdmin(admin.ModelAdmin):
+    search_fields = ['email', ]
+    fields = ('email', )
+    list_display = ('email', )
+    readonly_fields = ('email', )
+
+admin.site.register(EPaperEmail, EPaperEmailAdmin)         # 註冊 EPaperEmail 模型
