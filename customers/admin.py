@@ -22,3 +22,4 @@ class ClientAdmin(admin.ModelAdmin):
 
     def log_deletion(self, request, object, object_repr):
             pass
+    

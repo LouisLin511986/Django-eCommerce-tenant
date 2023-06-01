@@ -2,10 +2,13 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView
 from products.models import *
 from core.models import Setting
+from .filters import ProductModelFilter
+from products import models
+
 
 class HomeView(TemplateView):
     template_name = "products/home.html"
-
+        
     def get(self, request, *args, **kwargs): 
         products = Product.objects.all()
         # left_product_categories = ProductCategory.objects.all()[0:2]
@@ -36,7 +39,6 @@ class ProductListView(ListView):
     paginate_by = 10
 
 class ProductDetailView(DetailView):
-    
     model = Product
     context_object_name = 'item'
 
@@ -53,3 +55,14 @@ class ProductDetailView(DetailView):
         elif setting.detail_template == "Template-2":
             template_name = "products/detail/template2.html"
         return [template_name]
+    
+def Productsearch(request):
+    productall = models.Product.objects.all()  # 取得已啟用的產品, enabled=True
+    productModelFilter = ProductModelFilter(queryset=productall)
+
+    if request.method == "POST":
+        productModelFilter = ProductModelFilter(request.POST, queryset=productall)
+        context = {
+		'productModelFilter': productModelFilter
+		}
+    return render(request, "products/search.html", locals())

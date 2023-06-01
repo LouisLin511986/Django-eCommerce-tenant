@@ -93,26 +93,9 @@
                             <!-- / Cart -->
                             <!-- Search -->
                             <li class="dropdown search dropdown-slide">
-                                <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
+                                <a href="{% url 'products:search' %}" class="dropdown-toggle"><i
                                         class="tf-ion-ios-search-strong"></i> 搜尋</a>
-                                <ul class="dropdown-menu search-dropdown">
-                                    <li>
-                                        <form action="post"><input type="search" class="form-control" placeholder="搜尋..."></form>
-                                    </li>
-                                </ul>
                             </li><!-- / Search -->
-        
-                            <!-- Languages -->
-                            <li class="commonSelect">
-                                <form action="{% url 'set_language' %}" method="post">
-                                    {% csrf_token %}
-                                    <input name="next" type="hidden" value="{{ redirect_to }}">
-                                    <select name="language" class="form-control" onchange="this.form.submit()">
-                                        
-                                    </select>
-                                </form>
-                            </li><!-- / Languages -->
-        
                         </ul><!-- / .nav .navbar-nav .navbar-right -->
                     </div>
                 </div>
