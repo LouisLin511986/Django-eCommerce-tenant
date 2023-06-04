@@ -133,7 +133,7 @@ class CheckoutView(FormView):
         context['order_id'] = self.object.order_id
         return render(self.request, self.success_url, context=context)
 
-#對應 綠界科技金流表單視圖
+#對應 綠界科技金流表單視圖【https://developers.ecpay.com.tw/?p=2856】
 class ECPayView(TemplateView):
     template_name = "orders/ecpay.html"
 
@@ -170,12 +170,18 @@ class ECPayView(TemplateView):
             'CustomField4': '',
             'EncryptType': 1,
         }
-        # 建立實體
+        # 建立實體，特店測試資料： 模擬銀行3D驗證
         ecpay_payment_sdk = ECPayPaymentSdk(
             MerchantID='3002607',
             HashKey='pwFHCqoQZGmho4w6',
             HashIV='EkRm7iFT261dpevs'
         )
+        # 建立實體，平台商測試資料
+        # ecpay_payment_sdk = ECPayPaymentSdk(
+        #     MerchantID='3002599',
+        #     HashKey='spPjZn66i0OhqJsQ',
+        #     HashIV='hT5OJckN45isQTTs'
+        # )
         # 產生綠界訂單所需參數
         final_order_params = ecpay_payment_sdk.create_order(order_params)
 
@@ -195,11 +201,18 @@ class ReturnView(View):
         return super(ReturnView, self).dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
+        # 建立實體，特店測試資料： 模擬銀行3D驗證
         ecpay_payment_sdk = ECPayPaymentSdk(
             MerchantID='3002607',
             HashKey='pwFHCqoQZGmho4w6',
             HashIV='EkRm7iFT261dpevs'
         )
+        # 建立實體，平台商測試資料
+        # ecpay_payment_sdk = ECPayPaymentSdk(
+        #     MerchantID='3002599',
+        #     HashKey='spPjZn66i0OhqJsQ',
+        #     HashIV='hT5OJckN45isQTTs'
+        # )
         res = request.POST.dict()
         back_check_mac_value = request.POST.get('CheckMacValue')
         check_mac_value = ecpay_payment_sdk.generate_check_value(res)
@@ -207,12 +220,7 @@ class ReturnView(View):
             self.clear_cart()
             return HttpResponse('1|OK')
         return HttpResponse('0|Fail')
-    
-    def clear_cart(self):
-        response = JsonResponse({"status": 200})
-        response.delete_cookie("cart")
-        return response
-    
+        
 #對應 綠界科技金流用戶端端回應視圖
 class OrderResultView(View):
     
@@ -221,12 +229,18 @@ class OrderResultView(View):
         return super(OrderResultView, self).dispatch(request, *args, **kwargs)
     
     def post(self, request, *args, **kwargs):
-
+        # 建立實體，特店測試資料： 模擬銀行3D驗證
         ecpay_payment_sdk = ECPayPaymentSdk(
             MerchantID='3002607',
             HashKey='pwFHCqoQZGmho4w6',
             HashIV='EkRm7iFT261dpevs'
         )
+        # 建立實體，平台商測試資料
+        # ecpay_payment_sdk = ECPayPaymentSdk(
+        #     MerchantID='3002599',
+        #     HashKey='spPjZn66i0OhqJsQ',
+        #     HashIV='hT5OJckN45isQTTs'
+        # )
         res = request.POST.dict()
         back_check_mac_value = request.POST.get('CheckMacValue')
         order_id = request.POST.get('MerchantTradeNo')
@@ -237,19 +251,14 @@ class OrderResultView(View):
             order = Order.objects.get(order_id=order_id)
             order.status = '已付款，等待裝運'
             order.save()
-            ClearCartView().get(request)  # 刪除 cookie 中的項目
             return HttpResponseRedirect('/orders/order_success/')
         else:
             order = Order.objects.get(order_id=order_id)
             order.status = '付款失敗'
             order.save()
-            ClearCartView().get(request)  # 刪除 cookie 中的項目
             return HttpResponseRedirect('/orders/order_fail/')
         
-    def clear_cart(self):
-        response = JsonResponse({"status": 200})
-        response.delete_cookie("cart")
-        return response
+    
     
 #對應 付款成功視圖
 class OrderSuccessView(TemplateView):
