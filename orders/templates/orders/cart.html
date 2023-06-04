@@ -2,6 +2,22 @@
 {% load static %}
 
 {% block content %}
+<section class="page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="content">
+					<h1 class="page-name">購物車</h1>
+					<ol class="breadcrumb">
+						<li><a href="{% url 'products:home' %}">首頁</a></li>
+						<li class="active">購物車</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
 <!-- Main Menu Section -->
 <div class="page-wrapper">
     <div class="cart shopping">
@@ -14,11 +30,11 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th class="">Item Name</th>
-                        <th class="">Item Price</th>
-                        <th class="">Quatity</th>
-                        <th class="">Total Price</th>
-                        <th class="">Actions</th>
+                        <th class="">商品名稱</th>
+                        <th class="">價格</th>
+                        <th class="">數量</th>
+                        <th class="">總金額</th>
+                        <th class="">動作</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -40,13 +56,13 @@
                         </td>
                         <td class="">${% widthratio product.product.price 1 product.count %}</td>
                         <td class="">
-                            <a href="javascript:void(0)" onclick="getAjax('{% url \'orders:delete_cart\' product_id %}', '已移除商品', 'true');" class="product-remove" >Remove</a>
+                            <a href="javascript:void(0)" onclick="getAjax('{% url 'orders:delete_cart' product_id %}', '已移除商品', 'true');" class="product-remove" >移除</a>
                         </td>
                       </tr>
                       {% endfor %}
                     </tbody>
                   </table>
-                  <a href="{% url 'orders:checkout' %}" class="btn btn-main pull-right">Checkout</a>
+                  <a href="{% url 'orders:checkout' %}" class="btn btn-main pull-right">結帳</a>
                 </form>
               </div>
             </div>

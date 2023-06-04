@@ -50,7 +50,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-xs-12 col-sm-4">
-                        <img style="height: 12em;width: 12em" src="{% get_media_prefix %}{{ get_setting.logo }}">
+                        <img style="height: 8em;width: 8em" src="{% get_media_prefix %}{{ get_setting.logo }}">
                         <div class="contact-number">
                             <i class="tf-ion-ios-telephone"></i>
                             <span>0129- 12323-123123</span>
@@ -86,7 +86,7 @@
                                 <div class="dropdown-menu cart-dropdown">
                                     <ul class="text-center cart-buttons">
                                         <li><a href="{% url 'orders:cart' %}" class="btn btn-small">查看購物車</a></li>
-                                        <li><a href="checkout.html" class="btn btn-small btn-solid-border">結帳</a></li>
+                                        <li><a href="{% url 'orders:checkout' %}" class="btn btn-small btn-solid-border">結帳</a></li>
                                     </ul>
                                 </div>
                               </li>
@@ -128,19 +128,19 @@
                         </ul>
                         <ul class="footer-menu text-uppercase">
                             <li>
-                                <a href="contact.html">CONTACT</a>
+                                <a href="contact.html">聯絡我們</a>
                             </li>
                             <li>
-                                <a href="shop.html">SHOP</a>
+                                <a href="shop.html">商店</a>
                             </li>
                             <li>
-                                <a href="pricing.html">Pricing</a>
+                                <a href="pricing.html">價格</a>
                             </li>
                             <li>
-                                <a href="contact.html">PRIVACY POLICY</a>
+                                <a href="contact.html">隱私政策</a>
                             </li>
                         </ul>
-                        <p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
+                        <p class="copyright-text">版權所有 &copy;2023, Designed &amp; Developed by KaiShengLin</p>
                     </div>
                 </div>
             </div>

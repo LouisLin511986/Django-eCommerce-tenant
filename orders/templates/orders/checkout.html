@@ -8,9 +8,9 @@
       <div class="row">
          <div class="col-md-6">
             <ol class="breadcrumb">
-               <li><a href="{% url 'products:home' %}">{% translate "Home page" %}</a></li>
-               <li><a href="{% url 'orders:cart' %}">{% translate "Shopping cart" %}</a></li>
-               <li class="active">{% translate "Checkout" %}</li>
+               <li><a href="{% url 'products:home' %}">首頁</a></li>
+               <li><a href="{% url 'orders:cart' %}">購物車</a></li>
+               <li class="active">結帳</li>
             </ol>
          </div>
    </div>
@@ -23,7 +23,7 @@
          <div class="row">
             <div class="col-md-8">
                <div class="block billing-details">
-                  <h4 class="widget-title">Billing Details</h4>
+                  <h4 class="widget-title">結算明細</h4>
                   <form method="post" class="checkout-form">{% csrf_token %}
                      <div class="form-group">
                         <label for="name">{{ form.name.label }}</label>
@@ -51,14 +51,14 @@
                         <label for="address">{{ form.address.label }}</label>
                         {{ form.address }}
                      </div>
-                     <input type="submit" class="btn btn-main mt-20" value="{% translate 'Place Order' %}">
+                     <input type="submit" class="btn btn-main mt-20" value="下訂單">
                   </form>
                </div>
             </div>
             <div class="col-md-4">
                <div class="product-checkout-details">
                   <div class="block">
-                     <h4 class="widget-title">Order Summary</h4>
+                     <h4 class="widget-title">訂單摘要</h4>
                      {% for product_id, product in product_dict.items %}
                         <div class="media product-card">
                            <a class="pull-left" href="{% url 'products:detail' product_id %}">
@@ -71,13 +71,13 @@
                            <div class="media-body">
                               <h4 class="media-heading"><a href="{% url 'products:detail' product_id %}">{{ product.product.name }}</a></h4>
                               <p class="price">{{ product.count }} x ${{ product.product.price }}</p>
-                              <a href="javascript:void(0)" onclick="getAjax('{% url \'orders:delete_cart\' product_id %}', '已移除商品', 'true');" class="remove" >Remove</a>
+                              <a href="javascript:void(0)" onclick="getAjax('{% url 'orders:delete_cart' product_id %}', '已移除商品', 'true');" class="product-remove" style="color: red;">移除</a>
                            </div>
                         </div>
                      {% endfor %}
                      <ul class="summary-prices"></ul>
                      <div class="summary-total">
-                        <span>Total</span>
+                        <span>總價格</span>
                         <span>${{ total }}</span>
                      </div>
                   </div>
@@ -87,3 +87,4 @@
       </div>
    </div>
 </div>
+{% endblock content %}
