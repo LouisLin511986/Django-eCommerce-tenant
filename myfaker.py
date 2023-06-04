@@ -51,3 +51,18 @@ print(f"持卡人姓名: {holder_name}")
 print(f"手机号码: {phone_number}")
 print(f"电子邮箱: {email}")
 print(f"帐单地址: {billing_address}")
+
+
+# import hashlib
+# from faker import Faker
+
+# faker = Faker()
+
+# # 生成隨機字符串
+# random_string = faker.text()
+
+# # 計算MD5哈希值
+# md5_hash = hashlib.md5(random_string.encode()).hexdigest()
+
+# print(random_string)
+# print(md5_hash)
